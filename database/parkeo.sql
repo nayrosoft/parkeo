@@ -1,0 +1,1099 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 12-07-2018 a las 05:48:54
+-- Versión del servidor: 10.1.33-MariaDB
+-- Versión de PHP: 7.2.6
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `parkeo`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ajustes`
+--
+
+CREATE TABLE `ajustes` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CONSECU` int(4) DEFAULT '0' COMMENT 'CONSECU',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `PORQUE` longtext COMMENT 'PORQUE',
+  `AUTORIZO` varchar(20) DEFAULT NULL COMMENT 'AUTORIZO',
+  `VAL_AJU` double(12,2) DEFAULT '0.00' COMMENT 'VAL_AJU',
+  `FECHAJU` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHAJU',
+  `USUARIO` varchar(20) DEFAULT NULL COMMENT 'USUARIO',
+  `USADO` tinyint(1) DEFAULT '0' COMMENT 'USADO'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='AJUSTES';
+
+--
+-- Volcado de datos para la tabla `ajustes`
+--
+
+INSERT INTO `ajustes` (`ID`, `CONSECU`, `PLACA`, `FECHORE`, `PORQUE`, `AUTORIZO`, `VAL_AJU`, `FECHAJU`, `USUARIO`, `USADO`) VALUES
+(00000000000000000001, 15, 'CKJ706    ', '2017-08-09 06:11:09', 'NO TIENE PARA PAGAR Y PIDIO REBAJA', 'MIGUEL PRADO        ', -500.00, '2017-09-18 15:49:50', 'MASTER              ', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `bonos`
+--
+
+CREATE TABLE `bonos` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `NOMCLI` varchar(30) DEFAULT NULL COMMENT 'NOMCLI',
+  `CEDNIT` varchar(20) DEFAULT NULL COMMENT 'CEDNIT',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHA` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHA',
+  `NUMBONO` varchar(15) DEFAULT NULL COMMENT 'NUMBONO',
+  `VENCIDO` varchar(1) DEFAULT NULL COMMENT 'VENCIDO',
+  `VIG_BON` int(4) DEFAULT '0' COMMENT 'VIG_BON'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='BONOS';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cajaen0`
+--
+
+CREATE TABLE `cajaen0` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `FECHA` date DEFAULT '0000-00-00' COMMENT 'FECHA',
+  `CAJASALE` varchar(2) DEFAULT NULL COMMENT 'CAJASALE',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `NUMFAC` varchar(10) DEFAULT NULL COMMENT 'NUMFAC'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CAJAEN0';
+
+--
+-- Volcado de datos para la tabla `cajaen0`
+--
+
+INSERT INTO `cajaen0` (`ID`, `PLACA`, `TIP_VEH`, `FECHORE`, `FECHORS`, `VAL_PAG`, `FECHA`, `CAJASALE`, `CAJA`, `NUMFAC`) VALUES
+(00000000000000000001, '000000    ', '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', 0, '0000-00-00', '  ', '  ', '0000      ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cajas`
+--
+
+CREATE TABLE `cajas` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `CEDULA` varchar(12) DEFAULT NULL COMMENT 'CEDULA',
+  `NOMBRE` varchar(50) DEFAULT NULL COMMENT 'NOMBRE',
+  `DIRECCION` varchar(50) DEFAULT NULL COMMENT 'DIRECCION',
+  `TELFIJO` varchar(20) DEFAULT NULL COMMENT 'TELFIJO',
+  `CELULAR` varchar(20) DEFAULT NULL COMMENT 'CELULAR',
+  `ASIGNADA` int(4) DEFAULT '0' COMMENT 'ASIGNADA'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CAJAS';
+
+--
+-- Volcado de datos para la tabla `cajas`
+--
+
+INSERT INTO `cajas` (`ID`, `CAJA`, `CEDULA`, `NOMBRE`, `DIRECCION`, `TELFIJO`, `CELULAR`, `ASIGNADA`) VALUES
+(00000000000000000001, '99', '5422424242  ', 'JUAN PABLO MUÑOZ                                  ', 'AVDA 5 CON 87 NORTE                               ', '33223232323         ', '2122323224          ', 0),
+(00000000000000000002, '01', '94375364    ', 'JAVIER NOVOA                                      ', 'CALLE 20 # 40-22                                  ', '6678954             ', '3112994576          ', 1),
+(00000000000000000003, '02', '91345678    ', 'FRANCISCO VALENCIA                                ', 'CRA 34                                            ', '                    ', '321345789           ', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `codadh`
+--
+
+CREATE TABLE `codadh` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CODADH` varchar(20) DEFAULT NULL COMMENT 'CODADH',
+  `PLACA` varchar(6) DEFAULT NULL COMMENT 'PLACA',
+  `HORAS` int(4) DEFAULT '0' COMMENT 'HORAS',
+  `USUARIOCR` varchar(10) DEFAULT NULL COMMENT 'USUARIOCR',
+  `FECHACR` date DEFAULT '0000-00-00' COMMENT 'FECHACR',
+  `ELIMINADO` varchar(1) DEFAULT NULL COMMENT 'ELIMINADO',
+  `FECHAEL` date DEFAULT '0000-00-00' COMMENT 'FECHAEL',
+  `USUARIOEL` varchar(10) DEFAULT NULL COMMENT 'USUARIOEL'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CODADH';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `conemp`
+--
+
+CREATE TABLE `conemp` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `NITEMP` varchar(20) DEFAULT NULL COMMENT 'NITEMP',
+  `NOMCLI` varchar(30) DEFAULT NULL COMMENT 'NOMCLI',
+  `CEDNIT` varchar(20) DEFAULT NULL COMMENT 'CEDNIT',
+  `VAL_CON` int(10) DEFAULT '0' COMMENT 'VAL_CON',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `OBSE` longtext COMMENT 'OBSE',
+  `EMPRE` varchar(30) DEFAULT NULL COMMENT 'EMPRE',
+  `DESDE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'DESDE',
+  `HASTA` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'HASTA'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CONEMP';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consect`
+--
+
+CREATE TABLE `consect` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CONSECU` int(4) DEFAULT '0' COMMENT 'CONSECU',
+  `USUARIO` varchar(20) DEFAULT NULL COMMENT 'USUARIO'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CONSECT';
+
+--
+-- Volcado de datos para la tabla `consect`
+--
+
+INSERT INTO `consect` (`ID`, `CONSECU`, `USUARIO`) VALUES
+(00000000000000000001, 1, 'MASTER              '),
+(00000000000000000002, 2, 'LUISMAZUERA         '),
+(00000000000000000003, 3, 'NORISRAMIREZ        '),
+(00000000000000000004, 4, 'DELIOMUNOZ          '),
+(00000000000000000005, 5, 'RICARDOFLORES       '),
+(00000000000000000006, 6, 'ANGIEKLIGER         '),
+(00000000000000000007, 7, 'LUISMAZUERA         '),
+(00000000000000000008, 8, 'NORISRAMIREZ        '),
+(00000000000000000009, 9, 'NORISRAMIREZ        '),
+(00000000000000000010, 10, 'RICARDOFLORES       '),
+(00000000000000000011, 11, 'LUISMAZUERA         '),
+(00000000000000000012, 12, 'LUISMAZUERA         '),
+(00000000000000000013, 13, 'DELIOMUNOZ          '),
+(00000000000000000014, 14, 'RICARDOFLORES       '),
+(00000000000000000015, 15, 'NORISRAMIREZ        '),
+(00000000000000000016, 16, 'RICARDOFLORES       '),
+(00000000000000000017, 17, 'NORISRAMIREZ        '),
+(00000000000000000018, 18, 'RICARDOFLORES       '),
+(00000000000000000019, 19, 'LUISMAZUERA         '),
+(00000000000000000020, 20, 'MARCOGUZMAN         '),
+(00000000000000000021, 21, 'NORISRAMIREZ        '),
+(00000000000000000022, 22, 'DELIOMUNOZ          '),
+(00000000000000000023, 23, 'RICARDOFLORES       '),
+(00000000000000000024, 24, 'LUISMAZUERA         '),
+(00000000000000000025, 25, 'ANGIEKLIGER         '),
+(00000000000000000026, 26, 'ANGIEKLIGER         '),
+(00000000000000000027, 27, 'RICARDOFLORES       '),
+(00000000000000000028, 28, 'HAYDYSEGURA         '),
+(00000000000000000029, 29, 'LUISMAZUERA         '),
+(00000000000000000030, 30, 'DELIOMUNOZ          '),
+(00000000000000000031, 31, 'LUISMAZUERA         '),
+(00000000000000000032, 32, 'MARCOGUZMAN         '),
+(00000000000000000033, 33, 'RICARDOFLORES       '),
+(00000000000000000034, 34, 'HAYDYSEGURA         '),
+(00000000000000000035, 35, 'ANGIEKLIGER         '),
+(00000000000000000036, 36, 'DELIOMUNOZ          '),
+(00000000000000000037, 37, 'MARCOGUZMAN         '),
+(00000000000000000038, 38, 'LUISMAZUERA         '),
+(00000000000000000039, 39, 'RICARDOFLORES       '),
+(00000000000000000040, 40, 'MARCOGUZMAN         '),
+(00000000000000000041, 41, 'LUISMAZUERA         '),
+(00000000000000000042, 42, 'LUISMAZUERA         '),
+(00000000000000000043, 43, 'LUISMAZUERA         '),
+(00000000000000000044, 44, 'LUISMAZUERA         '),
+(00000000000000000045, 45, 'RICARDOFLORES       '),
+(00000000000000000046, 46, 'MARCOGUZMAN         '),
+(00000000000000000047, 47, 'LUISMAZUERA         '),
+(00000000000000000048, 48, 'RICARDOFLORES       '),
+(00000000000000000049, 49, 'ANGIEKLIGER         '),
+(00000000000000000050, 50, 'DELIOMUNOZ          '),
+(00000000000000000051, 51, 'RICARDOFLORES       '),
+(00000000000000000052, 52, 'MARCOGUZMAN         '),
+(00000000000000000053, 53, 'LUISMAZUERA         '),
+(00000000000000000054, 54, 'RICARDOFLORES       '),
+(00000000000000000055, 55, 'HAYDYSEGURA         '),
+(00000000000000000056, 56, 'MARCOGUZMAN         '),
+(00000000000000000057, 57, 'LUISMAZUERA         '),
+(00000000000000000058, 58, 'DELIOMUNOZ          '),
+(00000000000000000059, 59, 'HAYDYSEGURA         '),
+(00000000000000000060, 60, 'ANGIEKLIGER         '),
+(00000000000000000061, 61, 'DELIOMUNOZ          '),
+(00000000000000000062, 62, 'LUISMAZUERA         '),
+(00000000000000000063, 63, 'MARCOGUZMAN         '),
+(00000000000000000064, 64, 'RICARDOFLORES       '),
+(00000000000000000065, 65, 'LUISMAZUERA         '),
+(00000000000000000066, 66, 'MARCOGUZMAN         '),
+(00000000000000000067, 67, 'RICARDOFLORES       '),
+(00000000000000000068, 68, 'LUISMAZUERA         '),
+(00000000000000000069, 69, 'MARCOGUZMAN         '),
+(00000000000000000070, 70, 'MARCOGUZMAN         '),
+(00000000000000000071, 71, 'RICARDOFLORES       '),
+(00000000000000000072, 72, 'LUISMAZUERA         '),
+(00000000000000000073, 73, 'ANGIEKLIGER         '),
+(00000000000000000074, 74, 'NORISRAMIREZ        '),
+(00000000000000000075, 75, 'RICARDOFLORES       '),
+(00000000000000000076, 76, 'LUISMAZUERA         '),
+(00000000000000000077, 77, 'ANGIEKLIGER         '),
+(00000000000000000078, 78, 'RICARDOFLORES       '),
+(00000000000000000079, 79, 'LUISMAZUERA         '),
+(00000000000000000080, 80, 'MARCOGUZMAN         '),
+(00000000000000000081, 81, 'RICARDOFLORES       '),
+(00000000000000000082, 82, 'HAYDYSEGURA         '),
+(00000000000000000083, 83, 'ANGIEKLIGER         '),
+(00000000000000000084, 84, 'DELIOMUNOZ          '),
+(00000000000000000085, 85, 'MARCOGUZMAN         '),
+(00000000000000000086, 86, 'HAYDYSEGURA         '),
+(00000000000000000087, 87, 'LUISMAZUERA         '),
+(00000000000000000088, 88, 'RICARDOFLORES       '),
+(00000000000000000089, 89, 'HAYDYSEGURA         '),
+(00000000000000000090, 90, 'LUISMAZUERA         '),
+(00000000000000000091, 91, 'RICARDOFLORES       '),
+(00000000000000000092, 92, 'ANGIEKLIGER         '),
+(00000000000000000093, 93, 'LUISMAZUERA         '),
+(00000000000000000094, 94, 'RICARDOFLORES       '),
+(00000000000000000095, 95, 'MARCOGUZMAN         '),
+(00000000000000000096, 96, 'LUISMAZUERA         '),
+(00000000000000000097, 97, 'RICARDOFLORES       '),
+(00000000000000000098, 98, 'MARCOGUZMAN         '),
+(00000000000000000099, 99, 'LUISMAZUERA         '),
+(00000000000000000100, 100, 'RICARDOFLORES       '),
+(00000000000000000101, 101, 'MARCOGUZMAN         '),
+(00000000000000000102, 102, 'LUISMAZUERA         '),
+(00000000000000000103, 103, 'RICARDOFLORES       '),
+(00000000000000000104, 104, 'HAYDYSEGURA         '),
+(00000000000000000105, 105, 'ANGIEKLIGER         '),
+(00000000000000000106, 106, 'DELIOMUNOZ          '),
+(00000000000000000107, 107, 'HAYDYSEGURA         '),
+(00000000000000000108, 108, 'ANGIEKLIGER         '),
+(00000000000000000109, 109, 'DELIOMUNOZ          '),
+(00000000000000000110, 110, 'LUISMAZUERA         '),
+(00000000000000000111, 111, 'MARCOGUZMAN         '),
+(00000000000000000112, 112, 'RICARDOFLORES       '),
+(00000000000000000113, 113, 'LUISMAZUERA         '),
+(00000000000000000114, 114, 'RICARDOFLORES       '),
+(00000000000000000115, 115, 'MASTER              '),
+(00000000000000000116, 116, 'FRANCISCOV          '),
+(00000000000000000117, 117, 'JAVIERNB            '),
+(00000000000000000118, 118, 'FRANCISCOV          '),
+(00000000000000000119, 119, 'JAVIERNB            '),
+(00000000000000000120, 120, 'FRANCISCOV          '),
+(00000000000000000121, 121, 'JAVIERNB            '),
+(00000000000000000122, 122, 'FRANCISCOV          '),
+(00000000000000000123, 123, 'JAVIERNB            '),
+(00000000000000000124, 124, 'FRANCISCOV          '),
+(00000000000000000125, 125, 'JAVIERNB            ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `consucon`
+--
+
+CREATE TABLE `consucon` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `FECHA` date DEFAULT '0000-00-00' COMMENT 'FECHA',
+  `CONSUMO` int(10) DEFAULT '0' COMMENT 'CONSUMO'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CONSUCON';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `contra`
+--
+
+CREATE TABLE `contra` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `NITEMP` varchar(20) DEFAULT NULL COMMENT 'NITEMP',
+  `NOMCLI` varchar(30) DEFAULT NULL COMMENT 'NOMCLI',
+  `CEDNIT` varchar(20) DEFAULT NULL COMMENT 'CEDNIT',
+  `VAL_CON` int(10) DEFAULT '0' COMMENT 'VAL_CON',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `OBSE` longtext COMMENT 'OBSE',
+  `EMPRE` varchar(30) DEFAULT NULL COMMENT 'EMPRE',
+  `DESDE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'DESDE',
+  `HASTA` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'HASTA',
+  `HORAS` int(4) DEFAULT '0' COMMENT 'HORAS',
+  `MINUTOS` int(4) DEFAULT '0' COMMENT 'MINUTOS',
+  `DIREC` varchar(50) DEFAULT NULL COMMENT 'DIREC',
+  `TELEF` varchar(10) DEFAULT NULL COMMENT 'TELEF',
+  `CARGADO` varchar(1) DEFAULT NULL COMMENT 'CARGADO',
+  `ACTIVO` int(4) DEFAULT '0' COMMENT 'ACTIVO',
+  `HORUSADAS` int(4) DEFAULT '0' COMMENT 'HORUSADAS',
+  `SALDOHORAS` int(4) DEFAULT '0' COMMENT 'SALDOHORAS',
+  `VHORCONT` int(4) DEFAULT '0' COMMENT 'VHORCONT',
+  `TIP_CON` int(4) DEFAULT '0' COMMENT 'TIP_CON',
+  `IDREC` varchar(10) DEFAULT NULL COMMENT 'IDREC'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CONTRA';
+
+--
+-- Volcado de datos para la tabla `contra`
+--
+
+INSERT INTO `contra` (`ID`, `PLACA`, `NITEMP`, `NOMCLI`, `CEDNIT`, `VAL_CON`, `TIP_VEH`, `OBSE`, `EMPRE`, `DESDE`, `HASTA`, `HORAS`, `MINUTOS`, `DIREC`, `TELEF`, `CARGADO`, `ACTIVO`, `HORUSADAS`, `SALDOHORAS`, `VHORCONT`, `TIP_CON`, `IDREC`) VALUES
+(00000000000000000001, 'TVZ833    ', '                    ', 'DARCY QUIN                    ', '30721               ', 150000, '3', 'CARRO AZUL', '                              ', '2018-02-21 09:53:50', '2018-03-20 09:53:50', 0, 0, 'AV NQS                                            ', '310347    ', 'S', 0, 0, 150000, 0, 1, 'CLO00132  ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `cuadre`
+--
+
+CREATE TABLE `cuadre` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `DFECHA` varchar(10) DEFAULT NULL COMMENT 'DFECHA',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `CAJASALE` varchar(2) DEFAULT NULL COMMENT 'CAJASALE',
+  `NUMFAC` varchar(10) DEFAULT NULL COMMENT 'NUMFAC'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='CUADRE';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `datcli`
+--
+
+CREATE TABLE `datcli` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `NOMCLI` varchar(30) DEFAULT NULL COMMENT 'NOMCLI',
+  `CEDNIT` varchar(20) DEFAULT NULL COMMENT 'CEDNIT',
+  `OBSERE` longtext COMMENT 'OBSERE'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='DATCLI';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `hispar`
+--
+
+CREATE TABLE `hispar` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `DFECHA` varchar(10) DEFAULT NULL COMMENT 'DFECHA'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='HISPAR';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `invehi`
+--
+
+CREATE TABLE `invehi` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `DFECHA` varchar(10) DEFAULT NULL COMMENT 'DFECHA',
+  `UBICA` varchar(1) DEFAULT NULL COMMENT 'UBICA'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='INVEHI';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `numvedi`
+--
+
+CREATE TABLE `numvedi` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `DFECHA` varchar(10) DEFAULT NULL COMMENT 'DFECHA',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `CAJASALE` varchar(2) DEFAULT NULL COMMENT 'CAJASALE',
+  `NUMFAC` varchar(10) DEFAULT NULL COMMENT 'NUMFAC'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='NUMVEDI';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parkact`
+--
+
+CREATE TABLE `parkact` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `OBSERE` longtext COMMENT 'OBSERE',
+  `OBSERS` longtext COMMENT 'OBSERS',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `SALIO` varchar(1) DEFAULT NULL COMMENT 'SALIO',
+  `NOMCLI` varchar(30) DEFAULT NULL COMMENT 'NOMCLI',
+  `CEDNIT` varchar(20) DEFAULT NULL COMMENT 'CEDNIT',
+  `FECHA` date DEFAULT '0000-00-00' COMMENT 'FECHA',
+  `CONTRA` varchar(1) DEFAULT NULL COMMENT 'CONTRA',
+  `UBICA` varchar(1) DEFAULT NULL COMMENT 'UBICA',
+  `NUMREC` varchar(7) DEFAULT NULL COMMENT 'NUMREC',
+  `ANULADO` varchar(1) DEFAULT NULL COMMENT 'ANULADO',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `NUMFAC` varchar(10) DEFAULT NULL COMMENT 'NUMFAC'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='PARKACT';
+
+--
+-- Volcado de datos para la tabla `parkact`
+--
+
+INSERT INTO `parkact` (`ID`, `PLACA`, `TIP_VEH`, `FECHORE`, `FECHORS`, `OBSERE`, `OBSERS`, `VAL_PAG`, `SALIO`, `NOMCLI`, `CEDNIT`, `FECHA`, `CONTRA`, `UBICA`, `NUMREC`, `ANULADO`, `CAJA`, `NUMFAC`) VALUES
+(00000000000000000001, 'TUZ222    ', '3', '2018-02-21 08:12:32', '0000-00-00 00:00:00', '', '', 0, ' ', 'OSCAR PARDO                   ', '30229               ', '2018-02-21', 'N', 'P', '0000004', ' ', '02', '          '),
+(00000000000000000002, 'AZL221    ', '2', '2018-02-21 08:13:41', '0000-00-00 00:00:00', '', '', 0, ' ', 'CARLOS ORDOÑEZ                ', '92725               ', '2018-02-21', 'N', 'P', '0000005', ' ', '02', '          '),
+(00000000000000000003, 'MSA31     ', '1', '2018-02-21 08:14:32', '0000-00-00 00:00:00', 'LLANTA PINCHADA', '', 0, ' ', 'ANDREA GARCIA                 ', '91748               ', '2018-02-21', 'N', 'P', '0000006', ' ', '02', '          '),
+(00000000000000000004, 'PUZ22     ', '1', '2018-02-21 10:03:36', '0000-00-00 00:00:00', '', '', 0, ' ', 'ROCIO CORTES                  ', '90799               ', '2018-02-21', 'N', 'P', '0000007', ' ', '02', '          ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `parkeo`
+--
+
+CREATE TABLE `parkeo` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) NOT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `FECHORE` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORE',
+  `FECHORS` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORS',
+  `OBSERE` longtext COMMENT 'OBSERE',
+  `OBSERS` longtext COMMENT 'OBSERS',
+  `VAL_PAR` int(10) DEFAULT '0' COMMENT 'VAL_PAR',
+  `VAL_AJU` int(10) DEFAULT '0' COMMENT 'VAL_AJU',
+  `VAL_PAG` int(8) DEFAULT '0' COMMENT 'VAL_PAG',
+  `SALIO` varchar(1) DEFAULT NULL COMMENT 'SALIO',
+  `NOMCLI` varchar(30) DEFAULT NULL COMMENT 'NOMCLI',
+  `CEDNIT` varchar(20) DEFAULT NULL COMMENT 'CEDNIT',
+  `FECHA` date DEFAULT '0000-00-00' COMMENT 'FECHA',
+  `CONTRA` varchar(1) DEFAULT NULL COMMENT 'CONTRA',
+  `UBICA` varchar(1) DEFAULT NULL COMMENT 'UBICA',
+  `NUMREC` varchar(7) DEFAULT NULL COMMENT 'NUMREC',
+  `ANULADO` varchar(1) DEFAULT NULL COMMENT 'ANULADO',
+  `CAJASALE` varchar(2) DEFAULT NULL COMMENT 'CAJASALE',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `NUMFAC` varchar(10) DEFAULT NULL COMMENT 'NUMFAC',
+  `DIREC` varchar(60) DEFAULT NULL COMMENT 'DIREC',
+  `TELEF` varchar(40) DEFAULT NULL COMMENT 'TELEF',
+  `MON_IVA` int(4) DEFAULT '0' COMMENT 'MON_IVA',
+  `ACUMULA` varchar(1) DEFAULT NULL COMMENT 'ACUMULA',
+  `NUMHOR` int(4) DEFAULT '0' COMMENT 'NUMHOR',
+  `NUMMIN` int(4) DEFAULT '0' COMMENT 'NUMMIN'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='PARKEO';
+
+--
+-- Volcado de datos para la tabla `parkeo`
+--
+
+INSERT INTO `parkeo` (`ID`, `PLACA`, `TIP_VEH`, `FECHORE`, `FECHORS`, `OBSERE`, `OBSERS`, `VAL_PAR`, `VAL_AJU`, `VAL_PAG`, `SALIO`, `NOMCLI`, `CEDNIT`, `FECHA`, `CONTRA`, `UBICA`, `NUMREC`, `ANULADO`, `CAJASALE`, `CAJA`, `NUMFAC`, `DIREC`, `TELEF`, `MON_IVA`, `ACUMULA`, `NUMHOR`, `NUMMIN`) VALUES
+(00000000000000000001, 'CLT527    ', '2', '2018-02-21 08:06:43', '2018-02-21 09:59:16', '', 'porque si', 4000, 0, 4000, 'S', 'JAVIER NOVOA                  ', '94375               ', '2018-02-21', 'N', 'P', '0000001', ' ', '02', '01', 'CLO00133  ', 'AV 48                                                       ', '320721                                  ', 639, ' ', 1, 48),
+(00000000000000000002, 'TUX46     ', '1', '2018-02-21 08:07:50', '2018-02-21 10:05:16', '', '', 2000, 0, 2000, 'S', 'JUAN PEREZ                    ', '92721               ', '2018-02-21', 'N', 'P', '0000002', ' ', '02', '01', 'CLO00134  ', 'CRA 20                                                      ', '374229                                  ', 319, ' ', 1, 52),
+(00000000000000000003, 'IOU976    ', '3', '2018-02-21 08:09:02', '2018-02-21 10:17:15', '', '', 5000, 0, 5000, 'S', 'LUCY LEON                     ', '22741               ', '2018-02-21', 'N', 'P', '0000003', 'A', '01', '01', 'CLO00135  ', 'CRA 100                                                     ', '310282                                  ', 798, ' ', 2, 3),
+(00000000000000000004, 'TUZ222    ', '3', '2018-02-21 08:12:32', '0000-00-00 00:00:00', '', '', 0, 0, 0, ' ', 'OSCAR PARDO                   ', '30229               ', '2018-02-21', 'N', 'P', '0000004', ' ', '  ', '02', '          ', 'CALLE 12                                                    ', '312973                                  ', 0, ' ', 0, 0),
+(00000000000000000005, 'AZL221    ', '2', '2018-02-21 08:13:41', '0000-00-00 00:00:00', '', '', 0, 0, 0, ' ', 'CARLOS ORDOÑEZ                ', '92725               ', '2018-02-21', 'N', 'P', '0000005', ' ', '  ', '02', '          ', 'AV 71                                                       ', '311235                                  ', 0, ' ', 0, 0),
+(00000000000000000006, 'MSA31     ', '1', '2018-02-21 08:14:32', '0000-00-00 00:00:00', 'LLANTA PINCHADA', '', 0, 0, 0, ' ', 'ANDREA GARCIA                 ', '91748               ', '2018-02-21', 'N', 'P', '0000006', ' ', '  ', '02', '          ', 'CALLE 10                                                    ', '311274                                  ', 0, ' ', 0, 0),
+(00000000000000000007, 'TVZ833    ', '3', '2018-02-21 09:57:13', '2018-02-21 09:57:13', '', '', 0, 0, 150000, 'S', '                              ', '                    ', '2018-02-21', 'X', 'P', '       ', ' ', '02', '02', 'CLO00132  ', '                                                            ', '                                        ', 23950, ' ', 0, 0),
+(00000000000000000008, 'PUZ22     ', '1', '2018-02-21 10:03:36', '0000-00-00 00:00:00', '', '', 0, 0, 0, ' ', 'ROCIO CORTES                  ', '90799               ', '2018-02-21', 'N', 'P', '0000007', ' ', '  ', '02', '          ', 'CRA 98                                                      ', '310421                                  ', 0, ' ', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `premios`
+--
+
+CREATE TABLE `premios` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `PLACA` varchar(10) DEFAULT NULL COMMENT 'PLACA',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `NUMTUR` int(4) DEFAULT '0' COMMENT 'NUMTUR',
+  `NUMHOR` int(10) DEFAULT '0' COMMENT 'NUMHOR',
+  `FECHAINI` date DEFAULT '0000-00-00' COMMENT 'FECHAINI',
+  `FECHAFIN` date DEFAULT '0000-00-00' COMMENT 'FECHAFIN',
+  `FECREDIM` date DEFAULT '0000-00-00' COMMENT 'FECREDIM',
+  `NUMBONO` varchar(10) DEFAULT NULL COMMENT 'NUMBONO',
+  `REDIMIDO` int(4) DEFAULT '0' COMMENT 'REDIMIDO',
+  `USUARIO` varchar(20) DEFAULT NULL COMMENT 'USUARIO'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='PREMIOS';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `procesos`
+--
+
+CREATE TABLE `procesos` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CODIGO` varchar(10) DEFAULT NULL COMMENT 'CODIGO',
+  `DESCRIP` varchar(40) DEFAULT NULL COMMENT 'DESCRIP',
+  `PROGRAMA` longtext COMMENT 'PROGRAMA',
+  `CLASE` varchar(1) DEFAULT NULL COMMENT 'CLASE'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='PROCESOS';
+
+--
+-- Volcado de datos para la tabla `procesos`
+--
+
+INSERT INTO `procesos` (`ID`, `CODIGO`, `DESCRIP`, `PROGRAMA`, `CLASE`) VALUES
+(00000000000000000001, 'AJUSTES   ', 'REGISTRAR AJUSTES AL COBRO FINAL        ', 'SET EXCLU ON\r\nWEMPIN=\'A000000000\'\r\nWEMPFI=\'Z999999999\'\r\nWCLASE=SPACE(1)\r\nWCODIN=SPACE(4)\r\nWQUIN=SPACE(1)\r\nWASIBOR=SPACE(1)\r\nWPER=\'00\'\r\nWPN=1\r\nWSI=\'N\'\r\n=VENTANA(24,80,\'ASIGNACION Y DESASIGNACION DE CONCEPTOS\')\r\n@0,25 SAY \'SELECCIONE NOVEDAD\' \r\n@2,5 SAY \'1= PAGOS FIJOS 2= DEDUCCIONES FIJAS 3=PAGOS TEMPORALES \' \r\n@4,31 GET WCLASE VALID WCLASE=\'1\' OR WCLASE=\'2\' OR WCLASE=\'3\' &COL_GET SIZE 1,1 PICT \'9\'\r\n@6,10 SAY \'¿ ASIGNAR \"A\" ó BORRAR \"B\" ?\' \r\n@8,31 GET WASIBOR PICT \'A\' SIZE 1,1 &COL_GET VALID WASIBOR=\'A\' OR WASIBOR=\'B\'  \r\n@10,25 SAY \'RANGO DE EMPLEADOS\' \r\n@12,10 SAY \'CODIGO INICIAL\' \r\n@14,10 GET WEMPIN  &COL_GET SIZE 1,15 PICT \'XXXXXXXXXX\'\r\n@12,45 SAY\'CODIGO FINAL\'\r\n@14,45 GET WEMPFI  &COL_GET SIZE 1,15 PICT \'XXXXXXXXXX\'\r\n@16,10 SAY \'CONCEPTO A ASIGNAR\' \r\n@18,10 GET WCODIN  PICT \'XXXX\' SIZE 1,5 &COL_GET VALID TABLA(\'CONNOMI\',\'WCODIN\',\'CONNOMI, NOMCON\',\'\',\'\',\'V\')\r\n@16,45 SAY \'QUINCENA :1 ó 2 ó 3\'\r\n@18,45 GET WQUIN PICT \'9\' SIZE 1,2 &COL_GET VALID WQUIN=\'1\' OR WQUIN=\'2\' OR WQUIN=\'3\'\r\n@20,10 SAY \'PERIODO :01 AL 12\'\r\n@20,45 GET WPER PICT \'99\' SIZE 1,3 &COL_GET VALID WPER>=\'01\' OR WPER<=\'12\'\r\n@22,25 GET WPN FUNCT \'*H ACEPTAR;CANCELAR\'  SIZE 2,15\r\nREAD CYCLE MODAL\r\nRELE WIND ASIGNACION\r\n\r\nIF WPN=1 &&IF#1\r\n\r\n  SELE EMPLEAD,NOMBRES,APELLIDOS FROM EMPLEAD WHERE;\r\n  BETWEEN(EMPLEAD,WEMPIN,WEMPFI) AND ACTIVO=\'A\' INTO CURSOR CEMPL\r\n  BROW NODELE NOMODI NOAPPE\r\n  WCONTI=MESSAGEBOX(\'¿ CONTINUAR ?\',292,\'NAYROSOFT\')\r\n\r\n  IF WCONTI=6 &&IF #2\r\n\r\n	    DO CASE\r\n	       CASE WCLASE=\'1\'\r\n		     USE CONFIEM IN 0 ALIAS CONF\r\n		     SELE CONF\r\n		     INDEX ON ALLT(CONFIEM)+CODCON TAG CONFI\r\n		     SET ORDER TO TAG CONFI \r\n	       CASE WCLASE=\'2\'\r\n         	 USE DEDFIEM IN 0 ALIAS CONF\r\n		     SELE CONF\r\n		     INDEX ON ALLT(DEDFIEM)+CODCON TAG DEDFI\r\n		     SET ORDER TO TAG DEDFI \r\n	       CASE WCLASE=\'3\'\r\n         	 USE PAGTEM IN 0 ALIAS CONF\r\n		     SELE CONF\r\n		     INDEX ON ALLT(PAGTEM)+CODCON TAG PAGTE\r\n		     SET ORDER TO TAG PAGTE \r\n\r\n        ENDCASE\r\n\r\n  	    SELE CEMPL\r\n        SCAN\r\n          WEMPL=ALLT(EMPLEAD)\r\n	      SELE CONF\r\n			IF WASIBOR=\'A\'	&&IF #3\r\n  	           SELE CONF\r\n               GO TOP\r\n               SEEK WEMPL+WCODIN\r\n               IF FOUND() &&IF #4\r\n	              WAIT WINDOW \'CONCEPTO EXISTENTE EN EL EMPLEADO :\';\r\n				  +WEMPL TIMEOUT 0.5\r\n			   ELSE\r\n        		  APPEN BLANK\r\n			      DO CASE\r\n	 			     CASE WCLASE=\'1\'\r\n				       REPLA CONFIEM WITH WEMPL,CODCON WITH;\r\n					   WCODIN,INDQUI WITH WQUIN \r\n				     CASE WCLASE=\'2\'\r\n				       REPLA DEDFIEM WITH WEMPL,CODCON WITH;\r\n					   WCODIN,INDQUI WITH WQUIN  \r\n				     CASE WCLASE=\'3\'\r\n				       REPLA PAGTEM WITH WEMPL,CODCON WITH;\r\n					   WCODIN,INDQUI WITH WQUIN,INDPER WITH WPER  \r\n\r\n 	              ENDCASE\r\n				ENDIF &&ENDIF#4						\r\n	        ELSE\r\n				  DO CASE\r\n	 			     CASE WCLASE=\'1\'\r\n				       SELE CONF\r\n				       DELE ALL FOR ALLT(CONFIEM)+CODCON=WEMPL+WCODIN\r\n				     CASE WCLASE=\'2\'\r\n				       SELE CONF\r\n 				       DELE ALL FOR ALLT(DEDFIEM)+CODCON=WEMPL+WCODIN\r\n				     CASE WCLASE=\'3\'\r\n				       SELE CONF\r\n 				       DELE ALL FOR ALLT(PAGTEM)+CODCON=WEMPL+WCODIN\r\n\r\n 	              ENDCASE\r\n			ENDIF &&ENDIF#3	\r\nENDSCAN\r\n***********************\r\nIF WCONTI=6 &&IF#5\r\n  USE IN CONF \r\nENDIF &&ENDIF#5\r\n***********************\r\n  ENDIF &&ENDIF# 2\r\nENDIF &&ENDIF# 1\r\nSET EXCLU OFF\r\n=MESSAGEBOX(\'PROCESO TERMINADO\',\'NAYROSOFT\')\r\n', 'F'),
+(00000000000000000002, 'CAJAS     ', 'CREAR NUEVAS CAJAS PARA NUEVOS GUARDAS  ', 'SET EXCLUSIVE ON\r\nUSE EMPLEAD IN 0 ALIAS EMPL \r\nUSE VARNOM IN 0 ALIAS VARN\r\n\r\nSELE EMPL\r\nREPLA ALL EMPL.DIATRAB WITH 15,DIAINCA WITH 0,DIAVAC WITH 0,DIALNR WITH 0 FOR ACTIVO=\'A\' AND PERPAGO=1\r\nREPLA EMPL.DIATRAB WITH 0,DIAINCA WITH 0,DIAVAC WITH 0 FOR PERPAGO=2\r\nIF VARN.INDQUI=\'2\'\r\nREPLA EMPL.DIATRAB WITH 30,DIAINCA WITH 0,DIAVAC WITH 0 FOR PERPAGO=2\r\nENDIF\r\nIF VARN.INDQUI=\'2\'\r\nREPLA ALL EMPL.DIATRAB WITH 0,DIAINCA WITH 0,DIAVAC WITH 0,DIALNR WITH 0,EMPL.DIAFIC WITH 30 FOR ACTIVO=\'9\'\r\nENDIF\r\nUSE IN EMPL\r\n=MESSAGEBOX(\'PROCESO TERMINADO\',\'NAYROSOFT\')\r\nSET EXCLUSIVE OFF\r\n', 'F'),
+(00000000000000000003, 'COMAND    ', 'MANTENIMIENTO AL SISTEMA                ', 'SET EXCLU ON\r\nWCLASE=SPACE(1)\r\nWCODIN=SPACE(4)\r\nWQUIN=SPACE(1)\r\nWASIBOR=SPACE(1)\r\nwres=7\r\nWSI=\'N\'\r\nDO VENTINI\r\nwres=messagebox(\'Desea ;\r\n Continuar\',4+32+256,\'Software ;\r\nNayrosoft\')\r\nif wres=6\r\n\r\n  SELE EMPLEAD,NOMBRES,APELLIDOS FROM EMPLEAD WHERE ;\r\n  BETWEEN(EMPLEAD,WEMPIN,WEMPFI) AND ;\r\nACTIVO=\'A\' INTO CURSOR CEMPL\r\n  BROW NODELE NOMODI NOAPPE\r\n  WCONTI=MESSAGEBOX(\'¿ CONTINUAR ?\',292,\'NAYROSOFT\')\r\n\r\n  IF WCONTI=6 &&IF #2\r\n			USE CONFIEM IN 0 ALIAS CONF\r\n		    SELE CONF\r\n		    INDEX ON ALLT(CONFIEM)+CODCON TAG CONFI\r\n		    SET ORDER TO TAG CONFI \r\n	       	USE DEDFIEM IN 0 ALIAS DEDF\r\n		    SELE DEDF\r\n		    INDEX ON ALLT(DEDFIEM)+CODCON TAG DEDFI\r\n		    SET ORDER TO TAG DEDFI \r\n		SELE CEMPL\r\n        SCAN\r\n          WEMPL=ALLT(EMPLEAD)\r\n		  UPDATE EMPLEAD SET DIATRAB=15 WHERE ALLT(EMPLEAD)=WEMPL		\r\n		  \r\n	      SELE CONF\r\n		  APPEN BLANK\r\n		  REPLA CONFIEM WITH WEMPL,CODCON WITH ;\r\n		  \'0001\',INDQUI WITH \'3\'\r\n		  APPEN BLANK\r\n		  REPLA CONFIEM WITH WEMPL,CODCON WITH ;\r\n		  \'0002\',INDQUI WITH \'2\'\r\n		  SELE DEDF	\r\n		  APPE BLANK	\r\n	      REPLA DEDFIEM WITH WEMPL,CODCON WITH ;\r\n		  \'0014\',INDQUI WITH \'2\'\r\n		  APPE BLANK	\r\n	      REPLA DEDFIEM WITH WEMPL,CODCON WITH ;\r\n		  \'0015\',INDQUI WITH \'2\'\r\n\r\n		ENDSCAN\r\n***********************\r\nIF WCONTI=6 &&IF#5\r\n  USE IN CONF \r\n  USE IN DEDF	\r\n\r\nENDIF &&ENDIF#5\r\nENDIF\r\nENDIF\r\n***********************\r\nSET EXCLU OFF\r\n=MESSAGEBOX(\'PROCESO TERMINADO\',\'NAYROSOFT\')\r\n', 'F'),
+(00000000000000000004, 'CONFAC    ', 'CONFIGURACION FACTURA                   ', 'SET EXACT ON\r\nSET EXCLU ON\r\nSET READBOR ON\r\nUSE EMPLEAD IN 0 ALIAS EMPL\r\nWCAR=SPACE(1)\r\nWTE=SPACE(1)\r\nWPN=2\r\n=VENTANA(10,80,\'COMODIN\')\r\n@1,5 SAY \'CARACTER\' \r\n@2,5 SAY \'TIPO EMPLEADO\' \r\n@1,30 GET WCAR  SIZE 1,2 PICT \'A\'\r\n@2,30 GET WTE  SIZE 1,2\r\n@4,10 GET WPN FUNCT \'*H ACEPTAR;CANCELAR\'  SIZE 2,15\r\nREAD CYCLE MODAL\r\nRELE WIND COMODIN\r\nIF WPN=1\r\nSELE EMPL\r\nINDEX ON EMPLEAD FOR ACTIVO<>\'R\' AND ACTIVO<>\'I\' AND ACTIVO<>\'C\' AND TIPCON<>\'1\' TAG IEMP OF IEMP\r\nSET ORDER TO TAG IEMP\r\nGO TOP\r\nIF EMPTY(ALLT(WTE))\r\n	REPLA ALL COMODIN WITH WCAR FOR (ACTIVO<>\'R\' AND ACTIVO<>\'I\' AND ACTIVO<>\'C\' AND TIPCON<>\'1\')\r\nELSE\r\n	REPLA ALL COMODIN WITH WCAR FOR ALLT(TIPEMP)=ALLT(WTE) AND (ACTIVO<>\'R\' AND ACTIVO<>\'I\' AND ACTIVO<>\'C\' AND TIPCON<>\'1\')\r\nENDIF\r\nENDIF\r\nSELE EMPL\r\nREPLA ALL COMODIN WITH SPACE(1) FOR (ACTIVO=\'R\' OR ACTIVO=\'I\' OR ACTIVO=\'C\' OR  TIPCON=\'1\')\r\n*REPLA ALL COMODIN WITH SPACE(1) FOR ALLT(TIPEMP)<>ALLT(WTE)\r\nUSE IN EMPL\r\n=MESSAGEBOX(\'PROCESO TERMINADO\',\'NAYROSOFT\')\r\nSET EXCLUSIVE OFF\r\n', 'F'),
+(00000000000000000005, 'PARKEO    ', 'HISTORIA DE PARQUEO POR PLACAS Y FECHAS ', '', 'F'),
+(00000000000000000006, 'PREMIOS   ', 'IMPRIMIR BONO DE PREMIOS A LA FIDELIDAD ', 'USE RETFTE2 IN 0 ALIAS RT2\r\nSELE RT2\r\nBROW\r\nUSE IN RT2\r\n', 'F'),
+(00000000000000000007, 'SESIONES  ', 'SESIONES DE INGRESO AL SISTEMA          ', 'CLOSE DATA ALL\r\nUSE CARGOS IN 0 ALIAS XX EXCL\r\nSELE XX\r\nMODI STRUC\r\nBROW\r\nUSE IN XX', 'F'),
+(00000000000000000008, 'USUACT    ', 'ACTIVACION/DESACTIVACION DE CAJAS/USUAR ', 'USE HISPRIM IN 0 ALIAS XP\r\nSELE XP\r\nBROW\r\nUSE IN XP', 'F'),
+(00000000000000000009, 'CONTRA    ', 'CONTRATOS                               ', '', 'F'),
+(00000000000000000010, 'BORRAR    ', 'BORRA DATOS                             ', '', 'P');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `rangopre`
+--
+
+CREATE TABLE `rangopre` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `DESDE` int(4) DEFAULT '0' COMMENT 'DESDE',
+  `HASTA` int(4) DEFAULT '0' COMMENT 'HASTA',
+  `ANO_VIGE` varchar(4) DEFAULT NULL COMMENT 'ANO_VIGE',
+  `NUMTUR` int(4) DEFAULT '0' COMMENT 'NUMTUR',
+  `USUARIO` varchar(20) DEFAULT NULL COMMENT 'USUARIO'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='RANGOPRE';
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `reportes`
+--
+
+CREATE TABLE `reportes` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CODIGO` varchar(3) DEFAULT NULL COMMENT 'CODIGO',
+  `NOMREPOR` varchar(50) DEFAULT NULL COMMENT 'NOMREPOR'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='REPORTES';
+
+--
+-- Volcado de datos para la tabla `reportes`
+--
+
+INSERT INTO `reportes` (`ID`, `CODIGO`, `NOMREPOR`) VALUES
+(00000000000000000001, '001', 'Cuadre de Caja                                    '),
+(00000000000000000002, '002', 'Vehiculos dentro del Parkeadero                   '),
+(00000000000000000003, '003', 'Historia de Parkeo de un Vehiculo                 '),
+(00000000000000000004, '004', 'Numero de Vehiculos por Dia                       '),
+(00000000000000000005, '005', 'Recibo Extra                                      '),
+(00000000000000000006, '006', 'Datos Clientes                                    '),
+(00000000000000000007, '007', 'Cuadre por Dias por Caja                          '),
+(00000000000000000008, '008', 'Facturas Generadas                                '),
+(00000000000000000009, '009', 'Listado Contratos                                 '),
+(00000000000000000010, '010', 'Contratos por Mes                                 ');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `sesion`
+--
+
+CREATE TABLE `sesion` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `USUABRE` varchar(20) DEFAULT NULL COMMENT 'USUABRE',
+  `FECHORAB` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORAB',
+  `USUCIERR` varchar(20) DEFAULT NULL COMMENT 'USUCIERR',
+  `FECHORCI` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORCI'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='SESION';
+
+--
+-- Volcado de datos para la tabla `sesion`
+--
+
+INSERT INTO `sesion` (`ID`, `USUABRE`, `FECHORAB`, `USUCIERR`, `FECHORCI`) VALUES
+(00000000000000000001, 'MASTER              ', '2018-02-16 09:22:55', 'MASTER              ', '2018-02-20 14:55:16'),
+(00000000000000000002, 'FRANCISCOV          ', '2018-02-20 14:55:16', 'FRANCISCOV          ', '2018-02-20 15:01:40'),
+(00000000000000000003, 'JAVIERNB            ', '2018-02-20 15:01:40', 'MASTER              ', '2018-02-20 15:41:39'),
+(00000000000000000004, 'FRANCISCOV          ', '2018-02-20 15:41:39', 'FRANCISCOV          ', '2018-02-20 15:43:03'),
+(00000000000000000005, 'JAVIERNB            ', '2018-02-20 15:43:03', 'JAVIERNB            ', '2018-02-20 15:43:51'),
+(00000000000000000006, 'FRANCISCOV          ', '2018-02-20 15:43:51', 'FRANCISCOV          ', '2018-02-21 08:04:21'),
+(00000000000000000007, 'JAVIERNB            ', '2018-02-21 08:04:21', 'JAVIERNB            ', '2018-02-21 08:11:37'),
+(00000000000000000008, 'FRANCISCOV          ', '2018-02-21 08:11:37', 'FRANCISCOV          ', '2018-02-21 08:16:24'),
+(00000000000000000009, 'JAVIERNB            ', '2018-02-21 08:16:24', 'JAVIERNB            ', '2018-02-21 08:28:03'),
+(00000000000000000010, 'FRANCISCOV          ', '2018-02-21 08:28:03', 'FRANCISCOV          ', '2018-02-21 10:07:05'),
+(00000000000000000011, 'JAVIERNB            ', '2018-02-21 10:07:05', 'JAVIERNB            ', '2018-02-21 10:21:53'),
+(00000000000000000012, 'FRANCISCOV          ', '2018-02-21 10:21:53', '                    ', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tip_doc`
+--
+
+CREATE TABLE `tip_doc` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `TIPO` varchar(1) DEFAULT NULL COMMENT 'TIPO',
+  `DESTIP` varchar(25) DEFAULT NULL COMMENT 'DESTIP',
+  `PREFIJO` varchar(3) DEFAULT NULL COMMENT 'PREFIJO',
+  `INICIAL` int(7) DEFAULT '0' COMMENT 'INICIAL',
+  `ACTUAL` int(7) DEFAULT '0' COMMENT 'ACTUAL',
+  `TRAER` varchar(1) DEFAULT NULL COMMENT 'TRAER',
+  `LONNUM` int(2) DEFAULT '0' COMMENT 'LONNUM',
+  `PORIVA` double(5,2) DEFAULT '0.00' COMMENT 'PORIVA'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='TIP_DOC';
+
+--
+-- Volcado de datos para la tabla `tip_doc`
+--
+
+INSERT INTO `tip_doc` (`ID`, `TIPO`, `DESTIP`, `PREFIJO`, `INICIAL`, `ACTUAL`, `TRAER`, `LONNUM`, `PORIVA`) VALUES
+(00000000000000000001, '1', 'Factura servicio Parqueo ', 'CLO', 0, 135, 'S', 8, 19.00);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tip_veh`
+--
+
+CREATE TABLE `tip_veh` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `TIP_VEH` varchar(1) DEFAULT NULL COMMENT 'TIP_VEH',
+  `NOM_VEH` varchar(25) DEFAULT NULL COMMENT 'NOM_VEH',
+  `VAL_HOR` int(7) DEFAULT '0' COMMENT 'VAL_HOR',
+  `MINIMO` int(3) DEFAULT '0' COMMENT 'MINIMO',
+  `MINVAL` int(10) DEFAULT '0' COMMENT 'MINVAL',
+  `APARTIRD` int(3) DEFAULT '0' COMMENT 'APARTIRD',
+  `HORADIC` int(4) DEFAULT '0' COMMENT 'HORADIC',
+  `VHORCONT` int(4) DEFAULT '0' COMMENT 'VHORCONT',
+  `TARIFACON` int(10) DEFAULT '0' COMMENT 'TARIFACON'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='TIP_VEH';
+
+--
+-- Volcado de datos para la tabla `tip_veh`
+--
+
+INSERT INTO `tip_veh` (`ID`, `TIP_VEH`, `NOM_VEH`, `VAL_HOR`, `MINIMO`, `MINVAL`, `APARTIRD`, `HORADIC`, `VHORCONT`, `TARIFACON`) VALUES
+(00000000000000000001, '1', 'MOTO                     ', 500, 1, 1500, 5, 12, 1, 50000),
+(00000000000000000002, '2', 'VEHICULOS                ', 1500, 1, 2500, 5, 0, 0, 130000),
+(00000000000000000003, '3', 'CAMIONETA                ', 1000, 1, 3000, 5, 0, 0, 150000),
+(00000000000000000004, '4', 'BUS                      ', 0, 0, 0, 0, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usesion`
+--
+
+CREATE TABLE `usesion` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `USUABRE` varchar(20) DEFAULT NULL COMMENT 'USUABRE',
+  `FECHORAB` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORAB',
+  `FECHORCI` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'FECHORCI'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='USESION';
+
+--
+-- Volcado de datos para la tabla `usesion`
+--
+
+INSERT INTO `usesion` (`ID`, `USUABRE`, `FECHORAB`, `FECHORCI`) VALUES
+(00000000000000000001, 'MASTER              ', '2018-02-16 08:44:21', '0000-00-00 00:00:00'),
+(00000000000000000002, 'MASTER              ', '2018-02-16 09:00:45', '0000-00-00 00:00:00'),
+(00000000000000000003, 'JAVIERNB            ', '2018-02-16 09:04:54', '0000-00-00 00:00:00'),
+(00000000000000000004, 'MASTER              ', '2018-02-16 09:07:39', '0000-00-00 00:00:00'),
+(00000000000000000005, 'MASTER              ', '2018-02-16 09:22:55', '0000-00-00 00:00:00'),
+(00000000000000000006, 'MASTER              ', '2018-02-19 15:48:56', '0000-00-00 00:00:00'),
+(00000000000000000007, 'MASTER              ', '2018-02-19 15:51:04', '0000-00-00 00:00:00'),
+(00000000000000000008, 'JAVIERNB            ', '2018-02-19 15:54:03', '0000-00-00 00:00:00'),
+(00000000000000000009, 'MASTER              ', '2018-02-19 15:54:39', '0000-00-00 00:00:00'),
+(00000000000000000010, 'JAVIERNB            ', '2018-02-19 15:56:53', '0000-00-00 00:00:00'),
+(00000000000000000011, 'FRANCISCOV          ', '2018-02-19 15:57:13', '0000-00-00 00:00:00'),
+(00000000000000000012, 'JAVIERNB            ', '2018-02-19 15:57:48', '0000-00-00 00:00:00'),
+(00000000000000000013, 'JAVIERNB            ', '2018-02-19 15:58:42', '0000-00-00 00:00:00'),
+(00000000000000000014, 'MASTER              ', '2018-02-19 16:00:43', '0000-00-00 00:00:00'),
+(00000000000000000015, 'MASTER              ', '2018-02-20 14:53:03', '0000-00-00 00:00:00'),
+(00000000000000000016, 'FRANCISCOV          ', '2018-02-20 14:55:52', '0000-00-00 00:00:00'),
+(00000000000000000017, 'JAVIERNB            ', '2018-02-20 14:57:05', '0000-00-00 00:00:00'),
+(00000000000000000018, 'FRANCISCOV          ', '2018-02-20 14:57:40', '0000-00-00 00:00:00'),
+(00000000000000000019, 'MASTER              ', '2018-02-20 14:58:26', '0000-00-00 00:00:00'),
+(00000000000000000020, 'FRANCISCOV          ', '2018-02-20 14:59:00', '0000-00-00 00:00:00'),
+(00000000000000000021, 'JAVIERNB            ', '2018-02-20 15:01:49', '0000-00-00 00:00:00'),
+(00000000000000000022, 'FRANCISCOV          ', '2018-02-20 15:37:43', '0000-00-00 00:00:00'),
+(00000000000000000023, 'MASTER              ', '2018-02-20 15:39:09', '0000-00-00 00:00:00'),
+(00000000000000000024, 'FRANCISCOV          ', '2018-02-20 15:41:50', '0000-00-00 00:00:00'),
+(00000000000000000025, 'JAVIERNB            ', '2018-02-20 15:43:11', '0000-00-00 00:00:00'),
+(00000000000000000026, 'JAVIERNB            ', '2018-02-21 08:02:51', '0000-00-00 00:00:00'),
+(00000000000000000027, 'FRANCISCOV          ', '2018-02-21 08:03:41', '0000-00-00 00:00:00'),
+(00000000000000000028, 'JAVIERNB            ', '2018-02-21 08:04:28', '0000-00-00 00:00:00'),
+(00000000000000000029, 'FRANCISCOV          ', '2018-02-21 08:11:44', '0000-00-00 00:00:00'),
+(00000000000000000030, 'MASTER              ', '2018-02-21 08:19:36', '0000-00-00 00:00:00'),
+(00000000000000000031, 'FRANCISCOV          ', '2018-02-21 08:23:13', '0000-00-00 00:00:00'),
+(00000000000000000032, 'JAVIERNB            ', '2018-02-21 08:23:37', '0000-00-00 00:00:00'),
+(00000000000000000033, 'MASTER              ', '2018-02-21 08:28:10', '0000-00-00 00:00:00'),
+(00000000000000000034, 'JAVIERNB            ', '2018-02-21 09:52:46', '0000-00-00 00:00:00'),
+(00000000000000000035, 'FRANCISCOV          ', '2018-02-21 09:53:10', '0000-00-00 00:00:00'),
+(00000000000000000036, 'JAVIERNB            ', '2018-02-21 10:15:38', '0000-00-00 00:00:00'),
+(00000000000000000037, 'MASTER              ', '2018-02-21 10:22:00', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usudem`
+--
+
+CREATE TABLE `usudem` (
+  `ID` int(20) UNSIGNED ZEROFILL NOT NULL COMMENT 'Identificador',
+  `CLAVE` varchar(10) DEFAULT NULL COMMENT 'CLAVE',
+  `NOMBRE` varchar(20) DEFAULT NULL COMMENT 'NOMBRE',
+  `FUNCION` int(2) DEFAULT '0' COMMENT 'FUNCION',
+  `CTIV` varchar(10) DEFAULT NULL COMMENT 'CTIV',
+  `CAJA` varchar(2) DEFAULT NULL COMMENT 'CAJA',
+  `MODENSA` varchar(10) DEFAULT NULL COMMENT 'MODENSA',
+  `GRUPO` int(1) DEFAULT '0' COMMENT 'GRUPO',
+  `ACTIVO` varchar(1) DEFAULT NULL COMMENT 'ACTIVO'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 COMMENT='USUDEM';
+
+--
+-- Volcado de datos para la tabla `usudem`
+--
+
+INSERT INTO `usudem` (`ID`, `CLAVE`, `NOMBRE`, `FUNCION`, `CTIV`, `CAJA`, `MODENSA`, `GRUPO`, `ACTIVO`) VALUES
+(00000000000000000001, '3^˜©±    ', 'MASTER              ', 0, '          ', '99', '          ', 3, 'A'),
+(00000000000000000002, '3^˜©±    ', 'JAVIERNB            ', 0, '          ', '01', '          ', 1, 'A'),
+(00000000000000000003, '3^˜©±    ', 'FRANCISCOV          ', 0, '          ', '02', '          ', 1, 'A');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `ajustes`
+--
+ALTER TABLE `ajustes`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `bonos`
+--
+ALTER TABLE `bonos`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `cajaen0`
+--
+ALTER TABLE `cajaen0`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `cajas`
+--
+ALTER TABLE `cajas`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `codadh`
+--
+ALTER TABLE `codadh`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `conemp`
+--
+ALTER TABLE `conemp`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `consect`
+--
+ALTER TABLE `consect`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `consucon`
+--
+ALTER TABLE `consucon`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `contra`
+--
+ALTER TABLE `contra`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `cuadre`
+--
+ALTER TABLE `cuadre`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `datcli`
+--
+ALTER TABLE `datcli`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `hispar`
+--
+ALTER TABLE `hispar`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `invehi`
+--
+ALTER TABLE `invehi`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `numvedi`
+--
+ALTER TABLE `numvedi`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `parkact`
+--
+ALTER TABLE `parkact`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `parkeo`
+--
+ALTER TABLE `parkeo`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `premios`
+--
+ALTER TABLE `premios`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `procesos`
+--
+ALTER TABLE `procesos`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `rangopre`
+--
+ALTER TABLE `rangopre`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `reportes`
+--
+ALTER TABLE `reportes`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `sesion`
+--
+ALTER TABLE `sesion`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `tip_doc`
+--
+ALTER TABLE `tip_doc`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `tip_veh`
+--
+ALTER TABLE `tip_veh`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `usesion`
+--
+ALTER TABLE `usesion`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indices de la tabla `usudem`
+--
+ALTER TABLE `usudem`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `ajustes`
+--
+ALTER TABLE `ajustes`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `bonos`
+--
+ALTER TABLE `bonos`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `cajaen0`
+--
+ALTER TABLE `cajaen0`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `cajas`
+--
+ALTER TABLE `cajas`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de la tabla `codadh`
+--
+ALTER TABLE `codadh`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `conemp`
+--
+ALTER TABLE `conemp`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `consect`
+--
+ALTER TABLE `consect`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=126;
+
+--
+-- AUTO_INCREMENT de la tabla `consucon`
+--
+ALTER TABLE `consucon`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `contra`
+--
+ALTER TABLE `contra`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `cuadre`
+--
+ALTER TABLE `cuadre`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `datcli`
+--
+ALTER TABLE `datcli`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `hispar`
+--
+ALTER TABLE `hispar`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `invehi`
+--
+ALTER TABLE `invehi`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `numvedi`
+--
+ALTER TABLE `numvedi`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `parkact`
+--
+ALTER TABLE `parkact`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `parkeo`
+--
+ALTER TABLE `parkeo`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT de la tabla `premios`
+--
+ALTER TABLE `premios`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `procesos`
+--
+ALTER TABLE `procesos`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `rangopre`
+--
+ALTER TABLE `rangopre`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador';
+
+--
+-- AUTO_INCREMENT de la tabla `reportes`
+--
+ALTER TABLE `reportes`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT de la tabla `sesion`
+--
+ALTER TABLE `sesion`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT de la tabla `tip_doc`
+--
+ALTER TABLE `tip_doc`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT de la tabla `tip_veh`
+--
+ALTER TABLE `tip_veh`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT de la tabla `usesion`
+--
+ALTER TABLE `usesion`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=38;
+
+--
+-- AUTO_INCREMENT de la tabla `usudem`
+--
+ALTER TABLE `usudem`
+  MODIFY `ID` int(20) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT COMMENT 'Identificador', AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
